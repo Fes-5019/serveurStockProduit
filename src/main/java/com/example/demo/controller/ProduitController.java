@@ -13,34 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.*;
+import com.example.demo.service.IProduitService;
 import com.example.demo.service.IProduitServiceImp;
 
 @RestController
 @RequestMapping("/api/produit")
-@CrossOrigin
 public class ProduitController {
 
 	@Autowired
-	private IProduitServiceImp produitServiceImp;
+	private IProduitService produitService;
 	
 	@GetMapping
 	public List<Produit> getProduits() {
-		return produitServiceImp.getProduits();
+		System.out.println("ok");
+		return produitService.getProduits();
 	}
 	
 	@PostMapping
 	public void addProduit(@RequestBody Produit p) {
-		produitServiceImp.addProduit(p);
+		produitService.addProduit(p);
 	}
 	
 	@DeleteMapping("/{ref}")
 	public void deleteProduit(@PathVariable String ref) {
-		produitServiceImp.deleteProduit(ref);
+		produitService.deleteProduit(ref);
 	}
 	
 	@PutMapping
 	public void updateProduit(@RequestBody Produit p) {
-		produitServiceImp.updateProduit(p);
+		produitService.updateProduit(p);
 	}
 	
 }
